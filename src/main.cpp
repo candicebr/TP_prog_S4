@@ -1,13 +1,6 @@
-#include <iostream>
-
-int getY();
+#include "play_guess_the_number.h"
 
 int main()
 {
-    std::cout << "Hello World\n";
-}
-
-int getY()
-{
-    return 2;
+    play_guess_the_number();
 }
