@@ -13,7 +13,7 @@ void play_hangman()
 
     for (size_t i = 0; i < wordToFind.size(); ++i)
     {
-        guessingWord += '-';
+        guessingWord += '_';
     }
 
     int numberLife = 8;
@@ -62,7 +62,12 @@ void show_number_of_life (int numberLife) {
 }
 
 void show_word_guessing_state(std::string guessingWord) {
-    std::cout << "Word : " << guessingWord << std::endl;
+    std::cout << "Word : ";
+    for (auto& letter : guessingWord)
+    {
+        std::cout << letter << " ";
+    }
+    std::cout << std::endl;
 }
 
 bool word_contains(std::string word, char letter) {
@@ -84,7 +89,7 @@ bool player_is_alive(int numberLife) {
 }
 
 bool player_won(std::string guessingWord) {
-    return guessingWord.find('-') == std::string::npos;
+    return guessingWord.find('_') == std::string::npos;
 }
 
 void show_winning_message() {
