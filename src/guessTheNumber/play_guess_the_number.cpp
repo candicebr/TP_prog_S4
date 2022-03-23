@@ -7,7 +7,6 @@
 
 void play_guess_the_number() 
 {
-    int userNumber;
     int min = 0;
     int max = 100;
     int randomNumber = getRandomNumber<int>(min, max);
@@ -15,7 +14,7 @@ void play_guess_the_number()
     //std::cout << randomNumber << std::endl;
 
     std::cout << "Picked a number between " << min << " and " << max << std::endl;
-    userNumber = get_input_from_user<int>();
+    int userNumber = get_input_from_user<int>();
 
     while (userNumber != randomNumber)
     {

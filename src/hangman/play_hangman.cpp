@@ -17,7 +17,6 @@ void play_hangman()
     }
 
     int numberLife = 8;
-    char userLetter;
 
     std::cout << "Word to Find : " << wordToFind << std::endl;
 
@@ -26,7 +25,7 @@ void play_hangman()
         show_number_of_life(numberLife);
         show_word_guessing_state(guessingWord);
         std::cout << "Choose a letter : ";
-        userLetter = get_input_from_user<char>();
+        char userLetter = get_input_from_user<char>();
         std::cout << std::endl;
 
         if (word_contains(wordToFind, userLetter)) {
