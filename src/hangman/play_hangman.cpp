@@ -8,7 +8,7 @@
 
 void play_hangman() 
 {
-    std::string wordToFind = get_random_word();
+    const std::string wordToFind = get_random_word();
     std::string guessingWord;
 
     for (size_t i = 0; i < wordToFind.size(); ++i)
@@ -51,8 +51,8 @@ void play_hangman()
 
 std::string get_random_word() 
 {
-    std::vector<std::string> WordList = {"rectangle", "affection", "annotate", "leather", "inflame", "slow", "continent", "dagger"};
-    size_t lastIndex = WordList.size()-1;
+    const std::vector<std::string> WordList = {"rectangle", "affection", "annotate", "leather", "inflame", "slow", "continent", "dagger"};
+    const size_t lastIndex = WordList.size()-1;
     return WordList[getRandomNumber<size_t>(0, lastIndex)];
 }
 
@@ -62,7 +62,7 @@ void show_number_of_life (int numberLife) {
 
 void show_word_guessing_state(std::string guessingWord) {
     std::cout << "Word : ";
-    for (auto& letter : guessingWord)
+    for (const auto& letter : guessingWord)
     {
         std::cout << letter << " ";
     }

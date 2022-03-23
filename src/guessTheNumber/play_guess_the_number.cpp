@@ -7,9 +7,9 @@
 
 void play_guess_the_number() 
 {
-    int min = 0;
-    int max = 100;
-    int randomNumber = getRandomNumber<int>(min, max);
+    const int min = 0;
+    const int max = 100;
+    const int randomNumber = getRandomNumber<int>(min, max);
 
     //std::cout << randomNumber << std::endl;
 
