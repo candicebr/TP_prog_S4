@@ -4,6 +4,7 @@
 
 - [Level 1](#level-1)
 - [Level 2](#level-2)
+- [Level 3](#level-3)
 
 ---  
 
@@ -54,3 +55,29 @@
   > Static polymorphism (compile time) through templates  
   > Dynamic polymorphism (runtime) - [std::variant](https://julesfouchy.github.io/Learn--Clean-Code-With-Cpp/lessons/variant/) - [std::function](https://julesfouchy.github.io/Learn--Clean-Code-With-Cpp/lessons/std-function/)  
   > Good use for inheritance : interfaces
+
+---
+
+## Level 3
+
+#### std::vector
+#### Minimize dependencies
+#### Strong Types
+ > Carry specific meaning through its name -> concrete representation to concepts, physical units, coordinate spaces...  
+ > Prevent logic errors and make APIs harder to misuse  
+#### Use libraries
+ > Add libraries with CMake :
+ > ```CMake
+ > add_subdirectory(libname)
+ > target_link_libraries(${PROJECT_NAME} PRIVATE libname)
+ > ```
+#### Range-based for loop
+ > ```C++
+ > for (/*const*/ auto& element : v) {
+ > // ...
+ > }
+ > ```
+ > Guarantees that we are not modifying the index in the body of the loop  
+#### Testing
+ > [doctest](https://github.com/doctest/doctest)
+
