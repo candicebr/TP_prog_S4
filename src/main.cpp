@@ -20,9 +20,10 @@ std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size);
 int main() {
     //getMenu();
 
+    // Create window
     const int window_width = 1200;
     const int window_height = 1200;
-    auto ctx = p6::Context{{window_width, window_height, "Noughts and Crosses"}}; // Create a window
+    auto ctx = p6::Context{{window_width, window_height, "Noughts and Crosses"}};
     const int board_size = 3;
     std::vector<Cell> cells = make_cells(board_size);
 
@@ -69,7 +70,7 @@ void draw_cell(Cell cell, int size, p6::Context& ctx)
     ctx.square(p6::BottomLeftCorner{p6::map(glm::vec2{static_cast<float>(cell.index_x), static_cast<float>(cell.index_y)},
                                                     glm::vec2{0.f}, glm::vec2{static_cast<float>(size)},
                                                     glm::vec2{-1.f}, glm::vec2{1.f})},
-                       p6::Radius{1.f / static_cast<float>(size)});
+                p6::Radius{1.f / static_cast<float>(size)});
 }
 
 std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size)
@@ -85,7 +86,9 @@ std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size)
         p6::Color{0.2f,0.7f,0.7f}};
 
     // if there is a cell under the mouse
-    if (cell.index_x >= 0 && cell.index_x < size && cell.index_y >= 0 && cell.index_y < size) {
+    if (cell.index_x >= 0 && cell.index_x < size 
+     && cell.index_y >= 0 && cell.index_y < size) 
+    {
         return std::make_optional(cell);
     }
 
