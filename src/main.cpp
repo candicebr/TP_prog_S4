@@ -9,6 +9,7 @@
 struct Cell {
     int index_x;
     int index_y;
+    p6::Color color;
 };
 
 std::vector<Cell> make_cells(int size);
@@ -30,16 +31,13 @@ int main() {
         ctx.use_stroke = true;
         ctx.stroke_weight = 0.01f;
         ctx.stroke = {1.f, 1.f, 1.f};
-        ctx.fill = {0.5f, 0.7f, 0.7f};
 
         draw_board(cells, board_size, ctx);
 
-        // test hover
+        // cell on hovering
         auto cellHovered = hovered_cell(ctx.mouse(), board_size);
         if(cellHovered.has_value())
-            std::cout << cellHovered.value().index_x << " " << cellHovered.value().index_y << std::endl;
-        else
-            std::cout << "no cell under the mouse" << std::endl;
+            draw_cell(cellHovered.value(), board_size, ctx);
 
     };
     ctx.start(); 
@@ -52,7 +50,7 @@ std::vector<Cell> make_cells(int size)
     std::vector<Cell> cells;
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
-            cells.push_back(Cell{i,j});
+            cells.push_back(Cell{i, j, p6::Color{0.5f,0.7f,0.7f}});
         }
     }
     return cells;
@@ -67,6 +65,7 @@ void draw_board(std::vector<Cell> cells, int size, p6::Context& ctx)
 
 void draw_cell(Cell cell, int size, p6::Context& ctx)
 {
+    ctx.fill = {cell.color};
     ctx.square(p6::BottomLeftCorner{p6::map(glm::vec2{static_cast<float>(cell.index_x), static_cast<float>(cell.index_y)},
                                                     glm::vec2{0.f}, glm::vec2{static_cast<float>(size)},
                                                     glm::vec2{-1.f}, glm::vec2{1.f})},
@@ -82,7 +81,8 @@ std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size)
 
     const auto cell = Cell{
         static_cast<int>(std::floor(position.x)),
-        static_cast<int>(std::floor(position.y))};
+        static_cast<int>(std::floor(position.y)),
+        p6::Color{0.2f,0.7f,0.7f}};
 
     // if there is a cell under the mouse
     if (cell.index_x >= 0 && cell.index_x < size && cell.index_y >= 0 && cell.index_y < size) {
