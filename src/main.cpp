@@ -14,6 +14,7 @@ struct Cell {
 std::vector<Cell> make_cells(int size);
 void draw_board(std::vector<Cell> cells, int size, p6::Context& ctx);
 void draw_cell(Cell cell, int size, p6::Context& ctx);
+std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size);
 
 int main() {
     //getMenu();
@@ -32,6 +33,14 @@ int main() {
         ctx.fill = {0.5f, 0.7f, 0.7f};
 
         draw_board(cells, board_size, ctx);
+
+        // test hover
+        auto cellHovered = hovered_cell(ctx.mouse(), board_size);
+        if(cellHovered.has_value())
+            std::cout << cellHovered.value().index_x << " " << cellHovered.value().index_y << std::endl;
+        else
+            std::cout << "no cell under the mouse" << std::endl;
+
     };
     ctx.start(); 
 
@@ -62,6 +71,25 @@ void draw_cell(Cell cell, int size, p6::Context& ctx)
                                                     glm::vec2{0.f}, glm::vec2{static_cast<float>(size)},
                                                     glm::vec2{-1.f}, glm::vec2{1.f})},
                        p6::Radius{1.f / static_cast<float>(size)});
+}
+
+std::optional<Cell> hovered_cell(glm::vec2 mouse_pos, int size)
+{
+   
+    const auto position = p6::map(mouse_pos,
+                             glm::vec2{-1.f}, glm::vec2{1.f},
+                             glm::vec2{0.f}, glm::vec2{static_cast<float>(size)});
+
+    const auto cell = Cell{
+        static_cast<int>(std::floor(position.x)),
+        static_cast<int>(std::floor(position.y))};
+
+    // if there is a cell under the mouse
+    if (cell.index_x >= 0 && cell.index_x < size && cell.index_y >= 0 && cell.index_y < size) {
+        return std::make_optional(cell);
+    }
+
+    return std::nullopt;
 }
 
 
