@@ -80,4 +80,36 @@
  > Guarantees that we are not modifying the index in the body of the loop  
 #### Testing
  > [doctest](https://github.com/doctest/doctest)
+#### Master your IDE
+#### std::optional
+ > To represent an object that might be empty (std::nullopt)
+#### Single Source of Truth
+ > Only store an information once
+#### const
+#### Documentation
+ > Inline documentation  
+ > Doxygen
+#### Don't overfocus on performance
+#### Git submodules
+#### assert
+ > debugging tool  
+ > **static_assert** happens at compile time and **assert** at runtime
+#### auto
+ > to use when *it's more readable* (not just to *save some typing*)
+#### Markdown
+#### Smart Pointers
+#### std::function
+ > to store a function ```C++ #include <functional>```
+#### Git Pull Requests
+ > Fork and make a dedicated branch
+#### Advanced Git features
+#### std::variant
+ > Alternative to enums : list of possible states + contain data
+#### Space out your code
+ 
+
+
+
+
+
 
